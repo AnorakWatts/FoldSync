@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/anorak/CLionProjects/untitled/egg.h
+string
+-
+iostream
+-
+filesystem
+-
+vector
+-
+chrono
+-
+string
+-
+fstream
+-
+sstream
+-
+unistd.h
+-
+
+/home/anorak/CLionProjects/untitled/main.cpp
+egg.h
+/home/anorak/CLionProjects/untitled/egg.h
+
