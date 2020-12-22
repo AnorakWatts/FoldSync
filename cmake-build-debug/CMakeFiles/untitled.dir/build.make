@@ -114,6 +114,10 @@ untitled_EXTERNAL_OBJECTS =
 untitled: CMakeFiles/untitled.dir/main.cpp.o
 untitled: CMakeFiles/untitled.dir/egg.cpp.o
 untitled: CMakeFiles/untitled.dir/build.make
+untitled: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
+untitled: /usr/lib/x86_64-linux-gnu/libsfml-audio.so.2.5.1
+untitled: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
+untitled: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
 untitled: CMakeFiles/untitled.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/anorak/CLionProjects/untitled/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable untitled"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/untitled.dir/link.txt --verbose=$(VERBOSE)

@@ -25,6 +25,8 @@ sstream
 -
 unistd.h
 -
+SFML/Graphics.hpp
+-
 
 /home/anorak/CLionProjects/untitled/main.cpp
 egg.h

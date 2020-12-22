@@ -6,8 +6,12 @@ vector<fs::path> there_can_be_only_one(vector<string>pa,vector<fs::path>rem)
     vector<fs::path>res;
     for(int i=0;i<rem.size();i++)
     {
-        if(fs::exists(rem[i]))
+        if(fs::exists(rem[i])) {
+            if(fs::is_directory(rem[i])) {
+                fs::remove_all(rem[i]);
+            }
             fs::remove(rem[i]);
+        }
     }
 
     for(auto& p: fs::recursive_directory_iterator(pa[0]))
@@ -40,6 +44,12 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
 {
     vector<fs::path>res;
     string str;
+    for(int i=0;i<base.size();i++)
+    {
+        if(!fs::exists(base[i]))
+            res.push_back(base[i]);
+    }
+
     for(auto& p: fs::recursive_directory_iterator(pa[0]))
     {
         str=p.path().string().substr(pa[0].size());
@@ -57,12 +67,6 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
             }
         }
 
-    }
-
-    for(int i=0;i<base.size();i++)
-    {
-        if(!fs::exists(base[i]))
-            res.push_back(base[i]);
     }
 
     for(int i=1;i<pa.size();i++)
@@ -200,14 +204,16 @@ void ui() {
             ifstream file("config");
             while (getline(file, str)) {
                 if(fs::exists(str)) {
-                    paths.push_back(str1);
-                }
-                else if(str1=="snake.game")
+                    paths.push_back(str);
+                }/*
+                else if(str1.compare("snake.game"))
                 {
-
-                }
+                    Game g;
+                    g.start();
+                    g.Play();
+                }*/
                 else
-                    cout<<"no directory :"<<"    "<<str1<<endl;
+                    cout<<"no directory :"<<"    "<<str<<endl;
             }
             cout<<"config read successfully"<<endl;
             while (1) {
@@ -218,6 +224,7 @@ void ui() {
                     getchar();
                 else
                     sleep(time_to_sync*60);
+                cout<<"sync"<<endl;
                 buf = we_are_conected_by_the_one_feeling(paths, buf);
                 there_can_be_only_one(paths, buf);
             }
@@ -230,6 +237,6 @@ void ui() {
 
 
 int main() {
-    //ui();
+    ui();
 
 }
