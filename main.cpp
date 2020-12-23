@@ -50,19 +50,21 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
             res.push_back(base[i]);
     }
 
-    for(auto& p: fs::recursive_directory_iterator(pa[0]))
+
+
+    for(int j=0;j<base.size();j++)
     {
-        str=p.path().string().substr(pa[0].size());
+        str=base[j].string().substr(pa[0].size());
         for(int i=1;i<pa.size();i++)
         {
             if(!fs::exists(pa[i]+str)) {
-                res.push_back(p.path());
+                res.push_back(base[j].string());
                 break;
             }
             else if(fs::last_write_time(pa[i]+str)>lastsync)
             {
-                if(fs::last_write_time(p)<fs::last_write_time(pa[i]+str))
-                    fs::copy(pa[i]+str, p, fs::copy_options::overwrite_existing);
+                if(fs::last_write_time(base[j])<fs::last_write_time(pa[i]+str))
+                    fs::copy(pa[i]+str, base[i], fs::copy_options::overwrite_existing);
                 break;
             }
         }
@@ -198,7 +200,7 @@ void ui() {
     if(!rti)
     {
         ofstream file;
-        string str1;
+        string str1,xcin;
         if (fs::exists("config")) {
             vector<string> paths;
             ifstream file("config");
@@ -221,7 +223,7 @@ void ui() {
                 buf.clear();
                 buf = there_can_be_only_one(paths, buf);
                 if(time_to_sync==-1)
-                    getchar();
+                    cin<<xcin;
                 else
                     sleep(time_to_sync*60);
                 cout<<"sync"<<endl;
