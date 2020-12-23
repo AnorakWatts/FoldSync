@@ -228,7 +228,7 @@ void ui() {
                     sleep(time_to_sync*60);
                 cout<<"sync"<<endl;
                 buf = we_are_conected_by_the_one_feeling(paths, buf);
-                there_can_be_only_one(paths, buf);
+                buf = there_can_be_only_one(paths, buf);
             }
         }
         else
