@@ -63,9 +63,11 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
             }
             else if(fs::last_write_time(pa[i]+str)>lastsync)
             {
-                if(fs::last_write_time(base[j])<fs::last_write_time(pa[i]+str))
-                    fs::copy(pa[i]+str, base[i], fs::copy_options::overwrite_existing);
-                break;
+                if(fs::exists(base[j])) {
+                    if (fs::last_write_time(base[j]) < fs::last_write_time(pa[i] + str))
+                        fs::copy(pa[i] + str, base[j], fs::copy_options::overwrite_existing);
+                    break;
+                }
             }
         }
 
