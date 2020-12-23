@@ -136,7 +136,8 @@ void ui() {
                     } while (!cin.fail() && ans != 'y' && ans != 'n');
                     if (ans == 'y')
                     {
-                        system("nano config");
+                        try { system("nano config"); }
+                        catch (const std::exception& e) { e.what(); }
                         cout<<"OK all done wil start now";
                         goto start_time_set;
                     }
