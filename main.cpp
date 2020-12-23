@@ -52,27 +52,23 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
 
 
 
-    for(int j=0;j<base.size();j++)
-    {
-        str=base[j].string().substr(pa[0].size());
-        for(int i=1;i<pa.size();i++)
-        {
-            if(fs::last_write_time(base[j])>lastsync)
-                break;
-            if(!fs::exists(pa[i]+str)) {
-                res.push_back(base[j].string());
-                break;
-            }
-            else if(fs::last_write_time(pa[i]+str)>lastsync)
-            {
-                if(fs::exists(base[j])) {
-                    if (fs::last_write_time(base[j]) < fs::last_write_time(pa[i] + str))
-                        fs::copy(pa[i] + str, base[j], fs::copy_options::overwrite_existing);
+    for(int j=0;j<base.size();j++) {
+        if (!(fs::last_write_time(base[j]) > lastsync)) {
+            str = base[j].string().substr(pa[0].size());
+            for (int i = 1; i < pa.size(); i++) {
+                if (!fs::exists(pa[i] + str)) {
+                    res.push_back(base[j].string());
                     break;
+                } else if (fs::last_write_time(pa[i] + str) > lastsync) {
+                    if (fs::exists(base[j])) {
+                        if (fs::last_write_time(base[j]) < fs::last_write_time(pa[i] + str))
+                            fs::copy(pa[i] + str, base[j], fs::copy_options::overwrite_existing);
+                        break;
+                    }
                 }
             }
-        }
 
+        }
     }
 
     for(int i=1;i<pa.size();i++)
