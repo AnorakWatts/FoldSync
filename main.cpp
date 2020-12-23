@@ -57,6 +57,8 @@ vector<fs::path> we_are_conected_by_the_one_feeling(vector<string>pa,vector<fs::
         str=base[j].string().substr(pa[0].size());
         for(int i=1;i<pa.size();i++)
         {
+            if(fs::last_write_time(base[j])>lastsync)
+                break;
             if(!fs::exists(pa[i]+str)) {
                 res.push_back(base[j].string());
                 break;
