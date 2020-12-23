@@ -218,12 +218,12 @@ void ui() {
                     cout<<"no directory :"<<"    "<<str<<endl;
             }
             cout<<"config read successfully"<<endl;
+            vector<fs::path> buf;
+            buf.clear();
+            buf = there_can_be_only_one(paths, buf);
             while (1) {
-                vector<fs::path> buf;
-                buf.clear();
-                buf = there_can_be_only_one(paths, buf);
                 if(time_to_sync==-1)
-                    cin<<xcin;
+                    cin>>xcin;
                 else
                     sleep(time_to_sync*60);
                 cout<<"sync"<<endl;
